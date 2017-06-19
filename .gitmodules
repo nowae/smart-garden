@@ -1,0 +1,9 @@
+[submodule "05-Firmware/irrigation/Sources/libohiboard"]
+	path = 05-Firmware/irrigation/Sources/libohiboard
+	url = ../../ohilab/libohiboard.git
+[submodule "05-Firmware/irrigation/Sources/cli"]
+	path = 05-Firmware/irrigation/Sources/cli
+	url = ../../Loccioni-Electronic/cli.git
+[submodule "05-Firmware/irrigation/Sources/timer"]
+	path = 05-Firmware/irrigation/Sources/timer
+	url = ../../warcomeb/timer.git
