@@ -10,3 +10,6 @@
 [submodule "05-Firmware/irrigation/Sources/sdcard"]
 	path = 05-Firmware/irrigation/Sources/sdcard
 	url = ../../warcomeb/sdcard.git
+[submodule "05-Firmware/irrigation/Sources/parse-ini"]
+	path = 05-Firmware/irrigation/Sources/parse-ini
+	url = ../../ohilab/parse-ini.git
