@@ -13,3 +13,6 @@
 [submodule "05-Firmware/irrigation/Sources/parse-ini"]
 	path = 05-Firmware/irrigation/Sources/parse-ini
 	url = ../../ohilab/parse-ini.git
+[submodule "05-Firmware/irrigation/Sources/fat-mla"]
+	path = 05-Firmware/irrigation/Sources/fat-mla
+	url = ../../warcomeb/fat-mla.git
