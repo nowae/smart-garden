@@ -23,54 +23,20 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
+#ifndef __APPLICATION_H
+#define __APPLICATION_H
 
 #include "board.h"
 
-#include "application.h"
+/**
+ *
+ */
+Board_Errors App_init (void);
 
-static int i = 0;
+/**
+ *
+ */
+void App_update (void);
 
-int main(void)
-{
-    System_Errors errors = ERRORS_NO_ERROR;
 
-    Clock_Config clockConfig =
-    {
-        .source         = CLOCK_CRYSTAL,
-        .fext           = 8000000,
-        .foutSys        = 40000000,
-        .busDivider     = 2,
-    };
-
-    // Enable Clock
-    errors = Clock_setDividers(clockConfig.busDivider, 0,0);
-    System_Errors  error = Clock_Init(&clockConfig);
-
-    // Enable all ports
-    SIM_SCGC5 |= SIM_SCGC5_PORTA_MASK |
-                 SIM_SCGC5_PORTB_MASK |
-                 SIM_SCGC5_PORTC_MASK |
-                 SIM_SCGC5_PORTD_MASK |
-                 SIM_SCGC5_PORTE_MASK;
-
-    if (Board_init() != BOARDERRORS_OK)
-    {
-//        Board_systemStatus.flags.error = 1;
-        /* FIXME: reboot, retry configuration, or what? */
-        while(1){};
-    }
-
-    // Timer initialization
-    Timer_init();
-
-    App_init();
-
-    for (;;)
-    {
-        App_update();
-        i++;
-    }
-    /* Never leave main */
-    return 0;
-}
-
+#endif // __APPLICATION_H
