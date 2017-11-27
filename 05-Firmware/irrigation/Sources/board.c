@@ -66,11 +66,14 @@ static Rtc_Config Board_rtcConfig =
 static Board_Errors Board_setDigitalPinout (void)
 {
     System_Errors error = Gpio_config(RELAY_OUT1_PIN,RELAY_OUT1_CONFIG)           |
-                          Gpio_config(RELAY_OUT2_PIN,RELAY_OUT2_CONFIG);
-
+                          Gpio_config(RELAY_OUT2_PIN,RELAY_OUT2_CONFIG)           |
+                          Gpio_config(RELAY_OUT3_PIN,RELAY_OUT3_CONFIG)           |
+                          Gpio_config(RELAY_OUT4_PIN,RELAY_OUT4_CONFIG);
     // Set OFF conditions for all relays
     RELAY_OUT1_DIS();
     RELAY_OUT2_DIS();
+    RELAY_OUT3_DIS();
+    RELAY_OUT4_DIS();
 
     return BOARDERRORS_OK;
 }

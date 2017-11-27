@@ -113,6 +113,10 @@ static void App_cliHelp()
     Cli_sendHelpString("RTC get","Get current time");
     Cli_sendHelpString("RTC gets","Get current timein string");
     Cli_sendHelpString("RTC set <val>","Set current time");
+
+    Cli_sendHelpString("OUT on <val>","Switch ON selected relay <1-4>");
+    Cli_sendHelpString("OUT off <val>","Switch OFF selected relay <1-4>");
+
 }
 
 static void App_cliParser(void* dev, int argc, char argv[][LOCCIONI_CLI_BUFFER_SIZE])
@@ -152,6 +156,64 @@ static void App_cliParser(void* dev, int argc, char argv[][LOCCIONI_CLI_BUFFER_S
         else
         {
             Cli_sendString("Wrong request!");
+            return;
+        }
+    }
+
+    if (strcmp(argv[1],"OUT") == 0)
+    {
+        if ((argc == 4) && (strcmp(argv[2],"on") == 0))
+        {
+            uint8_t outNumber = 0;
+            dtu8(&argv[3],&outNumber,strlen(&argv[3]));
+            if (outNumber > 4)
+            {
+                Cli_sendString("Wrong request!");
+                return;
+            }
+            switch (outNumber)
+            {
+            case 1:
+                RELAY_OUT1_EN();
+                break;
+            case 2:
+                RELAY_OUT2_EN();
+                break;
+            case 3:
+                RELAY_OUT3_EN();
+                break;
+            case 4:
+                RELAY_OUT4_EN();
+                break;
+            }
+            Cli_sendString("The relay is ON!");
+            return;
+        }
+        else if ((argc == 4) && (strcmp(argv[2],"off") == 0))
+        {
+            uint8_t outNumber = 0;
+            dtu8(&argv[3],&outNumber,strlen(&argv[3]));
+            if (outNumber > 4)
+            {
+                Cli_sendString("Wrong request!");
+                return;
+            }
+            switch (outNumber)
+            {
+            case 1:
+                RELAY_OUT1_DIS();
+                break;
+            case 2:
+                RELAY_OUT2_DIS();
+                break;
+            case 3:
+                RELAY_OUT3_DIS();
+                break;
+            case 4:
+                RELAY_OUT4_DIS();
+                break;
+            }
+            Cli_sendString("The relay is OFF!");
             return;
         }
     }
